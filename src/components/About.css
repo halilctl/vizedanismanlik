@@ -1,0 +1,144 @@
+.about {
+  position: relative;
+  padding: 120px 20px;
+  z-index: 1;
+  background: linear-gradient(180deg, var(--white) 0%, var(--white-off) 100%);
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.about-title {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 800;
+  color: var(--navy-blue);
+  margin-bottom: 30px;
+  line-height: 1.2;
+}
+
+.about-description {
+  font-size: 18px;
+  color: var(--navy-blue-light);
+  line-height: 1.8;
+  margin-bottom: 40px;
+}
+
+.about-features {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.feature-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--amber) 100%);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.feature-item h4 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--navy-blue);
+  margin-bottom: 5px;
+}
+
+.feature-item p {
+  font-size: 16px;
+  color: var(--navy-blue-light);
+  line-height: 1.5;
+}
+
+.about-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.visual-card {
+  padding: 50px 40px;
+  border-radius: 24px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(30, 58, 95, 0.1);
+  border: 1px solid rgba(30, 58, 95, 0.1);
+  transition: all 0.3s ease;
+}
+
+.visual-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(30, 58, 95, 0.15);
+}
+
+.visual-number {
+  font-size: 64px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--amber) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+}
+
+.visual-label {
+  font-size: 18px;
+  color: var(--navy-blue);
+  font-weight: 600;
+}
+
+@media (max-width: 968px) {
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .about-visual {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .visual-card {
+    flex: 1;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about {
+    padding: 80px 20px;
+  }
+
+  .about-visual {
+    flex-direction: column;
+  }
+
+  .visual-card {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+

@@ -1,0 +1,12 @@
+.app {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Smooth scroll padding for navbar */
+section {
+  scroll-margin-top: 80px;
+}
+
