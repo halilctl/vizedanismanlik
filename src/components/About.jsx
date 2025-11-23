@@ -72,7 +72,7 @@ const About = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <div className="model-viewer-wrapper glassy">
-              <ModelViewer modelPath="/3d_model.glb" />
+              <ModelViewer modelPath="3d_model.glb" />
             </div>
           </motion.div>
         </div>
