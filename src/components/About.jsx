@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import ModelViewer from './ModelViewer'
 import './About.css'
 
 const About = () => {
@@ -70,17 +71,8 @@ const About = () => {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="visual-card glassy">
-              <div className="visual-content">
-                <div className="visual-number">10+</div>
-                <div className="visual-label">Yıllık Deneyim</div>
-              </div>
-            </div>
-            <div className="visual-card glassy">
-              <div className="visual-content">
-                <div className="visual-number">10K+</div>
-                <div className="visual-label">Mutlu Müşteri</div>
-              </div>
+            <div className="model-viewer-wrapper glassy">
+              <ModelViewer modelPath="/3d_model.glb" />
             </div>
           </motion.div>
         </div>

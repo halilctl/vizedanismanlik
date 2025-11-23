@@ -41,14 +41,14 @@ const DotGrid = () => {
     
     window.addEventListener('resize', handleResize)
 
-    // Create dots
-    for (let i = 0; i < dotCount; i++) {
+    // Create dots - daha fazla nokta ve daha büyük
+    for (let i = 0; i < dotCount * 1.5; i++) {
       dots.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
+        x: Math.random() * (canvas.width / (window.devicePixelRatio || 1)),
+        y: Math.random() * (canvas.height / (window.devicePixelRatio || 1)),
         vx: (Math.random() - 0.5) * 0.5,
         vy: (Math.random() - 0.5) * 0.5,
-        radius: Math.random() * 2 + 1
+        radius: Math.random() * 2 + 2
       })
     }
 
@@ -61,13 +61,17 @@ const DotGrid = () => {
         dot.x += dot.vx
         dot.y += dot.vy
 
+        // Canvas boyutlarını dpr'ye göre ayarla
+        const canvasWidth = canvas.width / (window.devicePixelRatio || 1)
+        const canvasHeight = canvas.height / (window.devicePixelRatio || 1)
+        
         // Bounce off edges
-        if (dot.x < 0 || dot.x > canvas.width) dot.vx *= -1
-        if (dot.y < 0 || dot.y > canvas.height) dot.vy *= -1
+        if (dot.x < 0 || dot.x > canvasWidth) dot.vx *= -1
+        if (dot.y < 0 || dot.y > canvasHeight) dot.vy *= -1
 
         // Keep in bounds
-        dot.x = Math.max(0, Math.min(canvas.width, dot.x))
-        dot.y = Math.max(0, Math.min(canvas.height, dot.y))
+        dot.x = Math.max(0, Math.min(canvasWidth, dot.x))
+        dot.y = Math.max(0, Math.min(canvasHeight, dot.y))
 
         // Mouse interaction
         const dx = mouse.x - dot.x
@@ -79,13 +83,13 @@ const DotGrid = () => {
           dot.y -= (dy / distance) * force * 2
         }
 
-        // Draw dot
+        // Draw dot - daha görünür
         ctx.beginPath()
-        ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2)
-        ctx.fillStyle = 'rgba(30, 58, 95, 0.3)'
+        ctx.arc(dot.x, dot.y, dot.radius * 1.5, 0, Math.PI * 2)
+        ctx.fillStyle = 'rgba(30, 58, 95, 0.6)'
         ctx.fill()
 
-        // Draw connections
+        // Draw connections - daha görünür
         dots.slice(i + 1).forEach(otherDot => {
           const dx = otherDot.x - dot.x
           const dy = otherDot.y - dot.y
@@ -95,8 +99,8 @@ const DotGrid = () => {
             ctx.beginPath()
             ctx.moveTo(dot.x, dot.y)
             ctx.lineTo(otherDot.x, otherDot.y)
-            ctx.strokeStyle = `rgba(30, 58, 95, ${0.2 * (1 - distance / connectionDistance)})`
-            ctx.lineWidth = 1
+            ctx.strokeStyle = `rgba(30, 58, 95, ${0.4 * (1 - distance / connectionDistance)})`
+            ctx.lineWidth = 1.5
             ctx.stroke()
           }
         })

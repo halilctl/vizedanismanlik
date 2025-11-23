@@ -161,6 +161,13 @@
   padding: 60px 20px 30px;
   background: linear-gradient(180deg, var(--white) 0%, var(--navy-blue-dark) 100%);
   color: var(--white);
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  box-sizing: border-box;
+  position: relative;
+  left: 0;
+  right: 0;
 }
 
 .footer-content {
@@ -222,13 +229,27 @@
   justify-content: center;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
-  font-size: 20px;
   transition: all 0.3s ease;
+  color: var(--white);
+}
+
+.social-links a svg {
+  width: 24px;
+  height: 24px;
+}
+
+.social-links a.instagram:hover {
+  background: linear-gradient(135deg, #833AB4 0%, #E1306C 50%, #FCAF45 100%);
+  transform: translateY(-3px);
+}
+
+.social-links a.whatsapp:hover {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  transform: translateY(-3px);
 }
 
 .social-links a:hover {
-  background: var(--gold);
-  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
 }
 
 .footer-bottom {

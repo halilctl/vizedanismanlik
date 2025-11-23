@@ -75,6 +75,14 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+.model-viewer-wrapper {
+  width: 100%;
+  max-width: 600px;
+  height: 500px;
 }
 
 .visual-card {
@@ -116,14 +124,9 @@
     gap: 60px;
   }
 
-  .about-visual {
-    flex-direction: row;
-    justify-content: center;
-  }
-
-  .visual-card {
-    flex: 1;
-    max-width: 300px;
+  .model-viewer-wrapper {
+    max-width: 100%;
+    height: 400px;
   }
 }
 
@@ -132,13 +135,8 @@
     padding: 80px 20px;
   }
 
-  .about-visual {
-    flex-direction: column;
-  }
-
-  .visual-card {
-    width: 100%;
-    max-width: 100%;
+  .model-viewer-wrapper {
+    height: 350px;
   }
 }
 

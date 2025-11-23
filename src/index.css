@@ -24,11 +24,16 @@ body {
   background-color: var(--white);
   color: var(--navy-blue);
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* Scrollbar Styling */
