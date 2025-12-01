@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.vizerotasi.com/sitemap.xml
+
+# Crawl-delay (opsiyonel)
+Crawl-delay: 1
+
