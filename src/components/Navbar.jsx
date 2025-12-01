@@ -26,7 +26,6 @@ const Navbar = () => {
     { id: 'hero', label: 'Ana Sayfa' },
     { id: 'services', label: 'Hizmetler' },
     { id: 'about', label: 'Hakkımızda' },
-    { id: 'folder', label: 'Portföy' },
     { id: 'faq', label: 'SSS' },
     { id: 'contact', label: 'İletişim' }
   ]
@@ -46,7 +45,7 @@ const Navbar = () => {
           whileTap={{ scale: 0.95 }}
         >
           <span className="logo-icon">✈️</span>
-          <span className="logo-text">Vize Danışmanlık</span>
+          <span className="logo-text">Vize Rotası</span>
         </motion.div>
 
         <div className={`navbar-menu ${mobileMenuOpen ? 'active' : ''}`}>

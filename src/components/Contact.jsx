@@ -98,12 +98,7 @@ const Contact = () => {
             <div className="info-card glassy">
               <div className="info-icon">✉️</div>
               <h3>E-posta</h3>
-              <p>info@vizedanismanlik.com</p>
-            </div>
-            <div className="info-card glassy">
-              <div className="info-icon">📍</div>
-              <h3>Adres</h3>
-              <p>İstanbul, Türkiye</p>
+              <p>vizerotasi@gmail.com</p>
             </div>
           </motion.div>
 
@@ -187,7 +182,7 @@ const Contact = () => {
       <footer className="footer">
         <div className="footer-content">
           <div className="footer-section">
-            <h3>Vize Danışmanlık</h3>
+            <h3>Vize Rotası</h3>
             <p>Profesyonel vize danışmanlık hizmetleri ile hayallerinize açılan kapıyı aralıyoruz.</p>
           </div>
           <div className="footer-section">
@@ -200,14 +195,13 @@ const Contact = () => {
           <div className="footer-section">
             <h4>İletişim</h4>
             <p>📞 0554 952 71 09</p>
-            <p>✉️ info@vizedanismanlik.com</p>
-            <p>📍 İstanbul, Türkiye</p>
+            <p>✉️ vizerotasi@gmail.com</p>
           </div>
           <div className="footer-section">
             <h4>Sosyal Medya</h4>
             <div className="social-links">
               <a 
-                href="https://www.instagram.com/vize.danismanlik/" 
+                href="https://www.instagram.com/vize.rotasi/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -232,7 +226,7 @@ const Contact = () => {
           </div>
         </div>
         <div className="footer-bottom">
-          <p>&copy; 2024 Vize Danışmanlık. Tüm hakları saklıdır.</p>
+          <p>&copy; 2024 Vize Rotası. Tüm hakları saklıdır.</p>
         </div>
       </footer>
     </section>

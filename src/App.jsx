@@ -4,7 +4,6 @@ import DotGrid from './components/DotGrid'
 import Hero from './components/Hero'
 import Services from './components/Services'
 import About from './components/About'
-import Folder from './components/Folder'
 import FAQ from './components/FAQ'
 import Process from './components/Process'
 import Contact from './components/Contact'
@@ -20,7 +19,6 @@ function App() {
       <Services />
       <About />
       <Process />
-      <Folder />
       <FAQ />
       <Contact />
       <BackToTop />

@@ -32,7 +32,7 @@ const BackToTop = () => {
   }
 
   const openInstagram = () => {
-    window.open('https://www.instagram.com/vize.danismanlik/', '_blank')
+    window.open('https://www.instagram.com/vize.rotasi/', '_blank')
   }
 
   return (

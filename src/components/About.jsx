@@ -59,7 +59,7 @@ const About = () => {
                 <div className="feature-icon">✓</div>
                 <div>
                   <h4>Güvenilir Hizmet</h4>
-                  <p>%98 başarı oranı</p>
+                  <p>Profesyonel danışmanlık</p>
                 </div>
               </motion.div>
             </div>

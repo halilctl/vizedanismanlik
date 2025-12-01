@@ -25,27 +25,6 @@ const Services = () => {
       color: 'var(--gold)'
     },
     {
-      id: 3,
-      title: 'Çalışma Vizesi',
-      description: 'Yurtdışında çalışma fırsatları için profesyonel vize desteği',
-      icon: '💼',
-      color: 'var(--navy-blue-light)'
-    },
-    {
-      id: 4,
-      title: 'Aile Birleşimi',
-      description: 'Aile birleşimi vize başvurularında uzman danışmanlık',
-      icon: '👨‍👩‍👧‍👦',
-      color: 'var(--amber)'
-    },
-    {
-      id: 5,
-      title: 'İş Vizesi',
-      description: 'İş seyahatleri ve ticari vize başvuruları için hızlı çözümler',
-      icon: '🤝',
-      color: 'var(--navy-blue)'
-    },
-    {
       id: 6,
       title: 'Vize Red Temyizi',
       description: 'Reddedilen vize başvuruları için temyiz ve yeniden başvuru desteği',
@@ -96,31 +75,6 @@ const Services = () => {
           ))}
         </div>
 
-        <motion.div
-          className="services-stack"
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.8, duration: 0.6 }}
-        >
-          <div className="stack-item stack-1">
-            <div className="stack-content">
-              <h4>Hızlı İşlem</h4>
-              <p>Ortalama 24-48 saat içinde başvuru hazırlığı</p>
-            </div>
-          </div>
-          <div className="stack-item stack-2">
-            <div className="stack-content">
-              <h4>Uzman Ekip</h4>
-              <p>10+ yıllık deneyime sahip vize uzmanları</p>
-            </div>
-          </div>
-          <div className="stack-item stack-3">
-            <div className="stack-content">
-              <h4>%98 Başarı</h4>
-              <p>Yüksek başarı oranı ile güvenilir hizmet</p>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   )
