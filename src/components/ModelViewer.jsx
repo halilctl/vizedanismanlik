@@ -2,6 +2,7 @@ import React, { Suspense, useRef, useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Environment, useGLTF, Html } from '@react-three/drei'
 import * as THREE from 'three'
+import { getAssetPath } from '../utils/baseUrl'
 import './ModelViewer.css'
 
 // 3D Model Component
@@ -130,13 +131,8 @@ class ModelErrorBoundary extends React.Component {
 
 // Main ModelViewer Component
 const ModelViewer = ({ modelPath = '3d_model.glb' }) => {
-  // GitHub Pages base URL desteği
-  const baseUrl = import.meta.env.BASE_URL || '/'
-  // Base URL'den trailing slash'i temizle ve model path'e ekle
-  const cleanBaseUrl = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl
-  const fullModelPath = modelPath.startsWith('/') 
-    ? `${cleanBaseUrl}${modelPath}` 
-    : `${cleanBaseUrl}/${modelPath}`
+  // Asset path helper kullan - otomatik base URL yönetimi
+  const fullModelPath = getAssetPath(modelPath)
 
   return (
     <ModelErrorBoundary>
