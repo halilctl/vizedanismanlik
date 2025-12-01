@@ -7,74 +7,36 @@ import react from '@vitejs/plugin-react'
 // Custom domain: www.vizerotasi.com
 const REPO_NAME = 'vizedanismanlik'
 
+// Custom domain için build kontrolü
+// VITE_USE_CUSTOM_DOMAIN=true olduğunda base path '/' olur
+const USE_CUSTOM_DOMAIN = process.env.VITE_USE_CUSTOM_DOMAIN === 'true'
+
 export default defineConfig({
-  plugins: [
-    react(),
-    // HTML transform plugin - custom domain için path düzeltmesi
-    {
-      name: 'html-transform',
-      transformIndexHtml(html) {
-        // Runtime'da custom domain kontrolü için script ekle
-        const customDomainScript = `
-  <script>
-    // Custom domain için base path düzeltmesi
-    (function() {
-      const hostname = window.location.hostname;
-      const isCustomDomain = hostname && !hostname.includes('github.io');
-      const basePath = '/${REPO_NAME}/';
-      
-      if (isCustomDomain) {
-        // URL path'ini düzelt
-        const currentPath = window.location.pathname;
-        if (currentPath.startsWith(basePath)) {
-          const newPath = currentPath.replace(basePath, '/');
-          if (newPath !== currentPath && newPath !== currentPath + '/') {
-            window.history.replaceState({}, '', newPath);
-          }
-        }
-        
-        // Sayfa yüklendikten sonra script ve link path'lerini düzelt
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', fixPaths);
-        } else {
-          fixPaths();
-        }
-        
-        function fixPaths() {
-          // Script tag'lerini düzelt
-          document.querySelectorAll('script[src]').forEach(function(script) {
-            if (script.src.includes(basePath)) {
-              script.src = script.src.replace(basePath, '/');
-            }
-          });
-          
-          // Link tag'lerini düzelt
-          document.querySelectorAll('link[href]').forEach(function(link) {
-            if (link.href.includes(basePath)) {
-              link.href = link.href.replace(basePath, '/');
-            }
-          });
-          
-          // Module preload'ları düzelt
-          document.querySelectorAll('link[rel="modulepreload"]').forEach(function(link) {
-            if (link.href.includes(basePath)) {
-              link.href = link.href.replace(basePath, '/');
-            }
-          });
-        }
-      }
-    })();
-  </script>`
-        
-        // </head> tag'inden önce script'i ekle
-        return html.replace('</head>', customDomainScript + '\n</head>')
-      }
-    }
-  ],
-  // Base path: GitHub Pages için /vizedanismanlik/
-  // Custom domain için runtime'da '/' olacak (yukarıdaki script ile)
-  base: process.env.NODE_ENV === 'production' 
-    ? (REPO_NAME ? `/${REPO_NAME}/` : '/')
-    : '/',
+  plugins: [react()],
+  // Base path yönetimi:
+  // - Custom domain build: '/' (www.vizerotasi.com için)
+  // - GitHub Pages build: '/vizedanismanlik/' (halilctl.github.io/vizedanismanlik için)
+  // - Development: '/'
+  base: USE_CUSTOM_DOMAIN 
+    ? '/' 
+    : (process.env.NODE_ENV === 'production' && REPO_NAME 
+      ? `/${REPO_NAME}/` 
+      : '/'),
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    // Source maps production'da kapalı (güvenlik ve performans)
+    sourcemap: false,
+    // Chunk size uyarı limiti
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        // Asset dosya isimlerini optimize et
+        assetFileNames: 'assets/[name].[hash].[ext]',
+        chunkFileNames: 'assets/[name].[hash].js',
+        entryFileNames: 'assets/[name].[hash].js',
+      },
+    },
+  },
 })
 
