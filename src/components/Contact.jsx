@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import emailjs from '@emailjs/browser'
 import './Contact.css'
 
 const Contact = () => {
@@ -18,6 +19,14 @@ const Contact = () => {
 
   const [errors, setErrors] = useState({})
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [submitError, setSubmitError] = useState('')
+  
+  // EmailJS Configuration
+  const EMAILJS_PUBLIC_KEY = 'eQ7pZLFNU4V5w7j3O'
+  // Service ID ve Template ID'yi EmailJS dashboard'unuzdan almanız gerekiyor
+  const EMAILJS_SERVICE_ID = 'service_9iw58po' // EmailJS dashboard'dan alın
+  const EMAILJS_TEMPLATE_ID = 'template_mkk19cb' // EmailJS dashboard'dan alın
 
   const validate = () => {
     const newErrors = {}
@@ -56,15 +65,49 @@ const Contact = () => {
     }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    if (validate()) {
-      // Form submission logic here
+    
+    // Form validasyonu - tüm alanlar dolu olmalı
+    if (!validate()) {
+      return
+    }
+    
+    setLoading(true)
+    setSubmitError('')
+    
+    try {
+      // EmailJS ile e-posta gönderme
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+        to_email: 'vizerotasi@gmail.com'
+      }
+      
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      )
+      
+      // Başarılı gönderim
       setSubmitted(true)
+      setFormData({ name: '', email: '', phone: '', message: '' })
+      setErrors({})
+      
+      // 5 saniye sonra başarı mesajını kaldır
       setTimeout(() => {
         setSubmitted(false)
-        setFormData({ name: '', email: '', phone: '', message: '' })
-      }, 3000)
+      }, 5000)
+      
+    } catch (error) {
+      console.error('EmailJS Hatası:', error)
+      setSubmitError('Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin veya doğrudan e-posta gönderin: vizerotasi@gmail.com')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -115,7 +158,24 @@ const Contact = () => {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                ✓ Mesajınız başarıyla gönderildi!
+                ✓ Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız.
+              </motion.div>
+            )}
+            {submitError && (
+              <motion.div
+                className="form-error"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                style={{
+                  padding: '12px',
+                  marginBottom: '20px',
+                  backgroundColor: 'rgba(220, 53, 69, 0.1)',
+                  border: '1px solid rgba(220, 53, 69, 0.3)',
+                  borderRadius: '8px',
+                  color: '#dc3545'
+                }}
+              >
+                ⚠️ {submitError}
               </motion.div>
             )}
             <div className="form-group">
@@ -171,9 +231,9 @@ const Contact = () => {
               className="btn-submit"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              disabled={submitted}
+              disabled={loading || submitted}
             >
-              {submitted ? 'Gönderiliyor...' : 'Gönder'}
+              {loading ? 'Gönderiliyor...' : submitted ? 'Gönderildi!' : 'Gönder'}
             </motion.button>
           </motion.form>
         </div>
