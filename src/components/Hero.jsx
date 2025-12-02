@@ -10,7 +10,7 @@ const Hero = () => {
   })
 
   const [stats, setStats] = useState([
-    { value: 0, target: 10000, suffix: '+' },
+    { value: 0, target: 1000, suffix: '+' },
     { value: 0, target: 50, suffix: '+' },
     { value: 0, target: 98, suffix: '%' }
   ])
@@ -26,7 +26,7 @@ const Hero = () => {
       const timers = []
 
       const targets = [
-        { target: 10000, suffix: '+' },
+        { target: 1000, suffix: '+' },
         { target: 50, suffix: '+' },
         { target: 98, suffix: '%' }
       ]
@@ -90,7 +90,12 @@ const Hero = () => {
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 0.3 }}
         >
-          {splitText('Hayallerinize Açılan Kapı')}
+          <div className="hero-title-line">
+            {splitText('Vize rotanızı biz')}
+          </div>
+          <div className="hero-title-line">
+            {splitText('belirliyoruz')}
+          </div>
         </motion.h1>
 
         <motion.p 

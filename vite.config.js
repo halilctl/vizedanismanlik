@@ -29,14 +29,26 @@ export default defineConfig({
     sourcemap: false,
     // Chunk size uyarı limiti
     chunkSizeWarningLimit: 1000,
+    // Minification optimizasyonları (esbuild varsayılan, daha hızlı)
+    minify: 'esbuild',
     rollupOptions: {
       output: {
         // Asset dosya isimlerini optimize et
         assetFileNames: 'assets/[name].[hash].[ext]',
         chunkFileNames: 'assets/[name].[hash].js',
         entryFileNames: 'assets/[name].[hash].js',
+        // Code splitting - manuel chunk ayarları
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom'],
+          'framer-vendor': ['framer-motion'],
+          'three-vendor': ['three', '@react-three/fiber', '@react-three/drei'],
+        },
       },
     },
+  },
+  // Optimize dependencies
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'framer-motion'],
   },
 })
 
