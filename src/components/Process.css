@@ -1,0 +1,128 @@
+.process-section {
+  position: relative;
+  padding: 120px 20px;
+  z-index: 1;
+  background: var(--white);
+}
+
+.process-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.process-timeline {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  margin-top: 80px;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.process-timeline::before {
+  content: '';
+  position: absolute;
+  top: 100px;
+  left: 10%;
+  right: 10%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--amber) 100%);
+  z-index: 0;
+}
+
+.process-step {
+  flex: 1;
+  min-width: 200px;
+  position: relative;
+  z-index: 1;
+}
+
+.step-connector {
+  display: none;
+}
+
+.step-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(30, 58, 95, 0.1);
+  border-radius: 20px;
+  padding: 40px 30px;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.step-card:hover {
+  box-shadow: 0 12px 40px rgba(30, 58, 95, 0.15);
+  border-color: var(--gold);
+}
+
+.step-number {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--amber) 100%);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.step-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.step-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--navy-blue);
+  margin-bottom: 12px;
+}
+
+.step-description {
+  font-size: 15px;
+  color: var(--navy-blue-light);
+  line-height: 1.6;
+}
+
+@media (max-width: 1200px) {
+  .process-timeline::before {
+    display: none;
+  }
+
+  .process-timeline {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .process-step {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .step-card {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .process-section {
+    padding: 80px 20px;
+  }
+
+  .process-timeline {
+    margin-top: 60px;
+  }
+}
+
